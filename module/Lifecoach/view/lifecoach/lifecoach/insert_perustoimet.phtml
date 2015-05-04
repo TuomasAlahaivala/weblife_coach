@@ -1,0 +1,33 @@
+<?php
+// module/Lifecoach/view/lifecoach/lifecoach/insert_perustoimet.phtml
+
+ $title = 'Perustoimet';
+ $this->headTitle($title);
+ ?>
+ <h1><?php echo $this->escapeHtml($title); ?></h1>
+ <?php
+ $form->setAttribute('action', $this->url('lifecoach', array('action' => 'insert_perustoimet')));
+ $form->prepare();
+
+ echo $this->form()->openTag($form);
+ echo $this->formHidden($form->get('id_user'));
+ echo $this->formRow($form->get('user_name'));
+ echo "<br/>";
+ echo $this->formRow($form->get('uni'));
+ echo "<br/>";
+ echo $this->formRow($form->get('aamupala'));
+ echo "<br/>";
+ echo $this->formRow($form->get('lounas'));
+ echo "<br/>";
+ echo $this->formRow($form->get('paivallinen'));
+ echo "<br/>";
+ echo $this->formRow($form->get('iltapala'));
+ echo "<br/>";
+ echo $this->formRow($form->get('hampaat'));
+ echo "<br/>";
+ echo $this->formRow($form->get('suihku'));
+ echo "<br/>";
+ echo $this->formRow($form->get('kuppa_aika'));
+ echo "<br/>";
+ echo $this->formSubmit($form->get('submit'));
+ echo $this->form()->closeTag();
