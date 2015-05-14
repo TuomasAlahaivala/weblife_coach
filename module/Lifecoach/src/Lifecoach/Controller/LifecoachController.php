@@ -10,58 +10,81 @@ namespace Lifecoach\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use Lifecoach\Model\Lifecoach;
+use Lifecoach\Model\Perustoimet;
+use Lifecoach\Model\PerustoimetTable;
 use Lifecoach\Form\PerustoimetForm;
 use Lifecoach\Form\TyotehtavatForm;
 use Lifecoach\Form\VapaaForm;
 use Zend\Session\Container;
  class LifecoachController extends AbstractActionController
  {
-     public $inputarray;
+
      public function indexAction()
      {
         //Tässä tarkistetaan onko käyttäjä kirjautunut sisään sekä onko hän täyttänyt perustiedot
          //Jos ok menee yhteenvetoon
-         $user_session = new Container('user');
-         
+        $user_session = new Container('user');
+        $values = array();
+        $values['get'] = "";
          /*if(!isset($user_session->user_name)){
              return $this->redirect()->toRoute('users');
          }*/
-         
+         if(isset($user_session->user_name)){
+        $perustoimettable = new PerustoimetTable($this->getServiceLocator());
+        $perusinfo = $perustoimettable->checkPerusinfo($user_session->id_user);
+        if($perusinfo != ""){
+            $values['perusinfo'] = "Muuta perustietoja";
+        }else{
+            $values['perusinfo'] = "Lisää perustoimet";
+        }
+
+         if($_GET){
+             
+             $values['get'] = "Perustoimet lisätty";
+         }
+         }
          return new ViewModel(array(
-             'error' => "erorr",
-             'user_session' => $user_session
+            'values' => $values,
+            'user_session' => $user_session
          ));
      }
-     public function insert_perustoimetAction()
+     public function insertperustoimetAction()
      {
-        $sm = $this->getServiceLocator();
-        $this->alue =  $sm->get('Lifecoachperustoimet');
-       
+        
         $form = new PerustoimetForm();
-         $form->get('submit')->setValue('Add');
-
+        $user_session = new Container('user');
+        $perustoimettable = new PerustoimetTable($this->getServiceLocator());
+        $perusinfo = $perustoimettable->checkPerusinfo($user_session->id_user);
+        if($perusinfo != ""){
+            $form->get('submit')->setValue('Muokkaa');
+            $form->bind($perusinfo);
+        }
          $request = $this->getRequest();
          if ($request->isPost()) {
-             $lifecoach = new Lifecoach($this->inputarray);
+             $lifecoach = new Perustoimet();
 
              $form->setInputFilter($lifecoach->getInputFilter());
              $form->setData($request->getPost());
-
+             
              if ($form->isValid()) {
+                 
                  $lifecoach->exchangeArray($form->getData());
-                 $perustoimettable = new LifecoachTable('lifecoach_perustoimet');
+                 $perustoimettable = new PerustoimetTable($this->getServiceLocator());
                  $perustoimettable->saveData($lifecoach);
 
-                 return $this->redirect()->toRoute('lifecoach');
+                 return $this->redirect()->toRoute('lifecoach',
+                    array('controller'=>'Lifecoach',
+                          'action' => 'index',
+                          'params' =>'addPerus'));
              }
          }
          return array('form' => $form);
      }
-     public function insert_tyotehtavatAction(){
+     public function inserttyotehtavatAction(){
          
      }
-     public function insert_varaaAction(){
+     public function insertvaraaAction(){
          
      }
+     
  }

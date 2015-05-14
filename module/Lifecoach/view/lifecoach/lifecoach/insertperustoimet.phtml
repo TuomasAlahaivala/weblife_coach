@@ -6,12 +6,10 @@
  ?>
  <h1><?php echo $this->escapeHtml($title); ?></h1>
  <?php
- $form->setAttribute('action', $this->url('lifecoach', array('action' => 'insert_perustoimet')));
+ $form->setAttribute('action', $this->url('lifecoach', array('action' => 'insertperustoimetdb')));
  $form->prepare();
 
  echo $this->form()->openTag($form);
- echo $this->formHidden($form->get('id_user'));
- echo $this->formRow($form->get('user_name'));
  echo "<br/>";
  echo $this->formRow($form->get('uni'));
  echo "<br/>";
@@ -27,7 +25,7 @@
  echo "<br/>";
  echo $this->formRow($form->get('suihku'));
  echo "<br/>";
- echo $this->formRow($form->get('kuppa_aika'));
+ echo $this->formRow($form->get('hukka_aika'));
  echo "<br/>";
  echo $this->formSubmit($form->get('submit'));
  echo $this->form()->closeTag();

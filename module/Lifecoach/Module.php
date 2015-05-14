@@ -29,14 +29,7 @@ namespace Lifecoach;
      {
          return array(
              'factories' => array(
-                 'Lifecoachperustoimet' => function(){
-                    $inputsarrayperus = array('uni','aamupala','lounas','paivallinen','iltapala','hampaat','suihku','hukka_aika');
-                    return $inputsarrayperus;
-                 },
-                    'Lifecoachtyotehtavat' => function(){
-                    $inputsarraytyo = array('tyotehtava','tyoaika');
-                    return $inputsarraytyo;
-                 },
+
                     'Lifecoachvapaa' => function(){
                     $inputsarrayvapaa = array('suunnitelmat','siivous','sauna','kauppa','liikunta','viihde','muuta');
                     return $inputsarrayvapaa;

@@ -1,5 +1,5 @@
 <?php
-namespace Users\Form;
+namespace Lifecoach\Form;
 
  use Zend\Form\Form;
 
@@ -10,10 +10,6 @@ namespace Users\Form;
          // we want to ignore the name passed
          parent::__construct('tyotehtavat');
 
-         $this->add(array(
-             'name' => 'id',
-             'type' => 'Hidden',
-         ));
          $this->add(array(
              'name' => 'tyotehtava',
              'type' => 'Text',

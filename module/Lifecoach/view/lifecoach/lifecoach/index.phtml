@@ -9,6 +9,15 @@
  <?php
 if(!isset($user_session->user_name)){
     echo "<a href=".$this->url('users').">Sisään/rekisteröidy</a>";
-}
+}else{?>
+    <a href="<?php echo $this->url('users', array('action'=>'logout'));?>">Logout</a>
+    <br/><br/>
+    <?php echo $values['get'];?>
+    <br/>
+    <a href="<?php echo $this->url('lifecoach', array('action'=>'insertperustoimet'));?>"><?php echo $values['perusinfo']; ?></a><br/>
+    <a href="<?php echo $this->url('lifecoach', array('action'=>'insert_tyotehtavat'));?>">Lisää työtehtävät</a><br/>
+    <a href="<?php echo $this->url('lifecoach', array('action'=>'insert_vapaa'));?>">Lisää vapaa-aikaa koskevat asiat</a><br/>
+    
+    
+<?php }
  ?>
- </table>

@@ -1,5 +1,5 @@
 <?php
-namespace Users\Form;
+namespace Lifecoach\Form;
 
  use Zend\Form\Form;
 
@@ -11,64 +11,93 @@ namespace Users\Form;
          parent::__construct('perustoimet');
          
          $this->add(array(
-             'name' => 'id_user',
-             'type' => 'Hidden',
-         ));
-         
-         $this->add(array(
              'name' => 'uni',
-             'type' => 'Time',
+             'type' => 'Text',
              'options' => array(
                  'label' => 'Uni määrä',
              ),
+             'attributes' => array(
+                 'class' => "timepick",
+                 'id' => 'timepick1'
+             ),
+             
          ));
          $this->add(array(
              'name' => 'aamupala',
-             'type' => 'Time',
+             'type' => 'Text',
              'options' => array(
                  'label' => 'Aamupala',
              ),
+             'attributes' => array(
+                 'class' => "timepick",
+                 'id' => 'timepick2'
+             ),
+             
          ));
          $this->add(array(
              'name' => 'lounas',
-             'type' => 'Time',
+             'type' => 'Text',
              'options' => array(
                  'label' => 'Lounas',
+             ),
+             'attributes' => array(
+                 'class' => "timepick",
+                 'id' => 'timepick3'
              ),
          ));
          $this->add(array(
              'name' => 'paivallinen',
-             'type' => 'Time',
+             'type' => 'Text',
              'options' => array(
                  'label' => 'Päivällinen',
+             ),
+             'attributes' => array(
+                 'class' => "timepick",
+                 'id' => 'timepick4'
              ),
          ));
          $this->add(array(
              'name' => 'iltapala',
-             'type' => 'Time',
+             'type' => 'Text',
              'options' => array(
                  'label' => 'Iltapala',
+             ),
+             'attributes' => array(
+                 'class' => "timepick",
+                 'id' => 'timepick5'
              ),
          ));
          $this->add(array(
              'name' => 'hampaat',
-             'type' => 'Time',
+             'type' => 'Text',
              'options' => array(
                  'label' => 'Hampaiden pesu',
+             ),
+             'attributes' => array(
+                 'class' => "timepick",
+                 'id' => 'timepick6'
              ),
          ));
          $this->add(array(
              'name' => 'suihku',
-             'type' => 'Time',
+             'type' => 'Text',
              'options' => array(
                  'label' => 'Suihku',
+             ),
+             'attributes' => array(
+                 'class' => "timepick",
+                 'id' => 'timepick7'
              ),
          ));
          $this->add(array(
              'name' => 'hukka_aika',
-             'type' => 'Time',
+             'type' => 'Text',
              'options' => array(
                  'label' => 'Hukka-aika',
+             ),
+             'attributes' => array(
+                 'class' => "timepick",
+                 'id' => 'timepick8'
              ),
          ));
          $this->add(array(
